@@ -194,7 +194,7 @@ resource "azurerm_virtual_machine" "instance" {
 
   depends_on = [
     azurerm_network_interface_security_group_association.mgmt,
-    azurerm_network_interface_security_group_association.public,
+    #azurerm_network_interface_security_group_association.public,
     azurerm_network_interface_security_group_association.priv
   ]
 }
