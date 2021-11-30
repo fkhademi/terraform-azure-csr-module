@@ -182,15 +182,15 @@ resource "azurerm_virtual_machine" "instance" {
     username   = "azureuser"
     public_key = var.ssh_key
   }
-
+*/
   os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {
-      path     = "/home/ubuntu/.ssh/authorized_keys"
+      path     = "/home/azureuser/.ssh/authorized_keys"
       key_data = var.ssh_key
     }
   }
- */
+
   depends_on = [
     azurerm_network_interface_security_group_association.mgmt,
     azurerm_network_interface_security_group_association.public,
