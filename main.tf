@@ -169,15 +169,21 @@ resource "azurerm_virtual_machine" "instance" {
   storage_os_disk {
     name                 = "${var.name}-osdisk"
     caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    create_option        = "FromImage"
+    managed_disk_type    = "Standard_LRS"
   }
 
-  ssh_keys {
+  os_profile {
+    computer_name  = "${var.name}-vm"
+    admin_username = "azureuser"
+    admin_password = var.password
+  }
+/* ssh_keys {
     username   = "azureuser"
     public_key = var.ssh_key
   }
 
-/*   os_profile_linux_config {
+  os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {
       path     = "/home/ubuntu/.ssh/authorized_keys"
