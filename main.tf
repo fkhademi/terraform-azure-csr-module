@@ -153,12 +153,7 @@ resource "azurerm_virtual_machine" "instance" {
   delete_os_disk_on_termination    = true
   delete_data_disks_on_termination = true
 
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = var.ssh_key
-  }
-
-  source_image_reference {
+  storage_image_reference {
     publisher = "cisco"
     offer     = "cisco-csr-1000v"
     sku       = "17_3_3-byol"
@@ -171,12 +166,25 @@ resource "azurerm_virtual_machine" "instance" {
     publisher = "cisco"
   }
 
-  os_disk {
+  storage_os_disk {
     name                 = "${var.name}-osdisk"
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
 
+  ssh_keys {
+    username   = "azureuser"
+    public_key = var.ssh_key
+  }
+
+/*   os_profile_linux_config {
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/ubuntu/.ssh/authorized_keys"
+      key_data = var.ssh_key
+    }
+  }
+ */
   depends_on = [
     azurerm_network_interface_security_group_association.mgmt,
     azurerm_network_interface_security_group_association.public,
