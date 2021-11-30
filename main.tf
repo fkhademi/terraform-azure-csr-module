@@ -6,19 +6,20 @@ resource "azurerm_public_ip" "mgmt" {
   sku                 = "Standard"
 }
 
-resource "azurerm_public_ip" "public" {
+/* resource "azurerm_public_ip" "public" {
   name                = "${var.name}-public-pub-ip"
   location            = var.region
   resource_group_name = var.rg
   allocation_method   = "Static"
   sku                 = "Standard"
-}
+} */
 
 resource "azurerm_network_interface" "mgmt" {
   name                 = "${var.name}-mgmt-nic"
   location             = var.region
   resource_group_name  = var.rg
   enable_ip_forwarding = true
+
   ip_configuration {
     name                          = "${var.name}-mgmt-nic"
     subnet_id                     = var.subnet
@@ -29,7 +30,7 @@ resource "azurerm_network_interface" "mgmt" {
     depends_on = [azurerm_network_security_group.mgmt]
 }
 
-resource "azurerm_network_interface" "public" {
+/* resource "azurerm_network_interface" "public" {
   name                = "${var.name}-public-nic"
   location            = var.region
   resource_group_name = var.rg
@@ -43,7 +44,7 @@ resource "azurerm_network_interface" "public" {
   
     depends_on = [azurerm_network_security_group.public]
 }
-
+ */
 resource "azurerm_network_interface" "priv" {
   name                = "${var.name}-priv-nic"
   location            = var.region
@@ -76,7 +77,7 @@ resource "azurerm_network_security_group" "mgmt" {
   }
 }
 
-resource "azurerm_network_security_group" "public" {
+/* resource "azurerm_network_security_group" "public" {
   name                = "${var.name}-public-nsg"
   location            = var.region
   resource_group_name = var.rg
@@ -103,7 +104,7 @@ resource "azurerm_network_security_group" "public" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-}
+} */
 
 resource "azurerm_network_security_group" "priv" {
   name                = "${var.name}-priv-nsg"
@@ -128,10 +129,10 @@ resource "azurerm_network_interface_security_group_association" "mgmt" {
   network_security_group_id = azurerm_network_security_group.mgmt.id
 }
 
-resource "azurerm_network_interface_security_group_association" "public" {
+/* resource "azurerm_network_interface_security_group_association" "public" {
   network_interface_id      = azurerm_network_interface.public.id
   network_security_group_id = azurerm_network_security_group.public.id
-}
+} */
 
 resource "azurerm_network_interface_security_group_association" "priv" {
   network_interface_id      = azurerm_network_interface.priv.id
@@ -144,7 +145,7 @@ resource "azurerm_virtual_machine" "instance" {
   resource_group_name          = var.rg
   network_interface_ids        = [
     azurerm_network_interface.mgmt.id, 
-    azurerm_network_interface.public.id, 
+    #azurerm_network_interface.public.id, 
     azurerm_network_interface.priv.id
   ]
   primary_network_interface_id = azurerm_network_interface.mgmt.id
