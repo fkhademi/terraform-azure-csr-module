@@ -3,9 +3,9 @@ output "vm" {
   value       = azurerm_virtual_machine.instance
 }
 
-output "mgmt_nic" {
+output "public_nic" {
   description = "The created Mgmt NIC as an object with all of it's attributes. This was created using the azurerm_network_interface resource."
-  value       = azurerm_network_interface.mgmt
+  value       = azurerm_network_interface.public
 }
 
 /* output "public_nic" {
