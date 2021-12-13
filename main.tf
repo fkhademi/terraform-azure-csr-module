@@ -302,7 +302,7 @@ resource "azurerm_virtual_machine" "instance" {
   os_profile {
     computer_name  = "${var.name}-vm"
     admin_username = "azureuser"
-    admin_password = var.password
+#    admin_password = var.password
     custom_data    = var.user_data
   }
 
