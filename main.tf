@@ -22,21 +22,6 @@ resource "azurerm_network_interface" "public" {
     depends_on = [azurerm_network_security_group.public]
 }
 
-/* resource "azurerm_network_interface" "public" {
-  name                = "${var.name}-public-nic"
-  location            = var.region
-  resource_group_name = var.rg
-
-  ip_configuration {
-    name                          = "${var.name}-public-nic"
-    subnet_id                     = var.subnet
-    private_ip_address_allocation = "dynamic"
-    public_ip_address_id          = azurerm_public_ip.public.id
-  }
-  
-    depends_on = [azurerm_network_security_group.public]
-}
- */
 resource "azurerm_network_interface" "priv" {
   name                = "${var.name}-priv-nic"
   location            = var.region
@@ -57,37 +42,8 @@ resource "azurerm_network_security_group" "public" {
   resource_group_name = var.rg
 
   security_rule {
-    name                       = "SSH"
-    priority                   = 1000
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "TCP"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-}
-
-/* resource "azurerm_network_security_group" "public" {
-  name                = "${var.name}-public-nsg"
-  location            = var.region
-  resource_group_name = var.rg
-
-  security_rule {
-    name                       = "Cisco"
-    priority                   = 1001
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "UDP"
-    source_port_range          = "*"
-    destination_port_range     = "12356-12357"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-  security_rule {
     name                       = "ICMP"
-    priority                   = 1002
+    priority                   = 1000
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "ICMP"
@@ -96,7 +52,190 @@ resource "azurerm_network_security_group" "public" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-} */
+
+  security_rule {
+    name                       = "DTLS"
+    priority                   = 1001
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "UDP"
+    source_port_range          = "*"
+    destination_port_range     = "12346-13156"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "SSH from CH01"
+    priority                   = 1002
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "185.112.52.0/22"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "SSH from CH02"
+    priority                   = 1003
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "TCP"
+    source_port_range          = "194.30.181.0/24"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vbond-4"
+    priority                   = 1004
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "52.221.135.94/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+###
+
+  security_rule {
+    name                       = "vsmart-5"
+    priority                   = 1005
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "54.151.139.68/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vmanage"
+    priority                   = 1006
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "52.29.35.167/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vsmart-4"
+    priority                   = 1007
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "34.192.15.19/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vbond-3"
+    priority                   = 1008
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "18.235.204.12/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vbond-2"
+    priority                   = 1009
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "54.74.48.147/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vsmart-1"
+    priority                   = 1010
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "18.192.225.137/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vsmart-3"
+    priority                   = 1011
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "52.5.190.61/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vsmart-2"
+    priority                   = 1012
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "54.74.133.23/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vbond-1"
+    priority                   = 1013
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "18.158.122.46/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "vsmart-6"
+    priority                   = 1014
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "18.140.33.99/32"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "outbound"
+    priority                   = 1015
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+}
 
 resource "azurerm_network_security_group" "priv" {
   name                = "${var.name}-priv-nsg"
@@ -121,11 +260,6 @@ resource "azurerm_network_interface_security_group_association" "public" {
   network_security_group_id = azurerm_network_security_group.public.id
 }
 
-/* resource "azurerm_network_interface_security_group_association" "public" {
-  network_interface_id      = azurerm_network_interface.public.id
-  network_security_group_id = azurerm_network_security_group.public.id
-} */
-
 resource "azurerm_network_interface_security_group_association" "priv" {
   network_interface_id      = azurerm_network_interface.priv.id
   network_security_group_id = azurerm_network_security_group.priv.id
@@ -137,7 +271,6 @@ resource "azurerm_virtual_machine" "instance" {
   resource_group_name          = var.rg
   network_interface_ids        = [
     azurerm_network_interface.public.id, 
-    #azurerm_network_interface.public.id, 
     azurerm_network_interface.priv.id
   ]
   primary_network_interface_id = azurerm_network_interface.public.id
@@ -148,14 +281,14 @@ resource "azurerm_virtual_machine" "instance" {
 
   storage_image_reference {
     publisher = "cisco"
-    offer     = "cisco-csr-1000v"
+    offer     = "cisco-sdwan-csr-1000v"
     sku       = "17_3_3-byol"
     version   = "latest"
   }
 
   plan {
     name      = "17_3_3-byol"
-    product   = "cisco-csr-1000v"
+    product   = "cisco-sdwan-csr-1000v"
     publisher = "cisco"
   }
 
@@ -186,7 +319,6 @@ resource "azurerm_virtual_machine" "instance" {
 
   depends_on = [
     azurerm_network_interface_security_group_association.public,
-    #azurerm_network_interface_security_group_association.public,
     azurerm_network_interface_security_group_association.priv
   ]
 }

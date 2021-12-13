@@ -8,11 +8,6 @@ output "public_nic" {
   value       = azurerm_network_interface.public
 }
 
-/* output "public_nic" {
-  description = "The created Public NIC as an object with all of it's attributes. This was created using the azurerm_network_interface resource."
-  value       = azurerm_network_interface.public
-} */
-
 output "priv_nic" {
   description = "The created Private NIC as an object with all of it's attributes. This was created using the azurerm_network_interface resource."
   value       = azurerm_network_interface.priv
