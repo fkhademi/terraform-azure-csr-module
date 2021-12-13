@@ -303,12 +303,9 @@ resource "azurerm_virtual_machine" "instance" {
     computer_name  = "${var.name}-vm"
     admin_username = "azureuser"
     admin_password = var.password
+    custom_data    = var.user_data
   }
-/* ssh_keys {
-    username   = "azureuser"
-    public_key = var.ssh_key
-  }
-*/
+
   os_profile_linux_config {
     disable_password_authentication = true
     ssh_keys {

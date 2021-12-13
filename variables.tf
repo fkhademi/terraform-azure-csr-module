@@ -30,6 +30,10 @@ variable "ssh_key" {
   type = string
 }
 
+variable "user_data" {
+  type = string
+}
+
 variable "instance_size" {
   type    = string
   default = "Standard_B1ms"
