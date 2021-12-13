@@ -71,9 +71,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "TCP"
-    source_port_range          = "185.112.52.0/22"
+    source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = "*"
+    source_address_prefix      = "185.112.52.0/22"
     destination_address_prefix = "*"
   }
 
@@ -83,9 +83,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "TCP"
-    source_port_range          = "194.30.181.0/24"
+    source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = "*"
+    source_address_prefix      = "194.30.181.0/24"
     destination_address_prefix = "*"
   }
 
@@ -95,9 +95,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "52.221.135.94/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "52.221.135.94/32"
     destination_address_prefix = "*"
   }
 
@@ -109,9 +109,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "54.151.139.68/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "54.151.139.68/32"
     destination_address_prefix = "*"
   }
 
@@ -121,9 +121,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "52.29.35.167/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "52.29.35.167/32"
     destination_address_prefix = "*"
   }
 
@@ -133,9 +133,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "34.192.15.19/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "34.192.15.19/32"
     destination_address_prefix = "*"
   }
 
@@ -145,9 +145,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "18.235.204.12/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "18.235.204.12/32"
     destination_address_prefix = "*"
   }
 
@@ -157,9 +157,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "54.74.48.147/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "54.74.48.147/32"
     destination_address_prefix = "*"
   }
 
@@ -169,9 +169,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "18.192.225.137/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "18.192.225.137/32"
     destination_address_prefix = "*"
   }
 
@@ -181,9 +181,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "52.5.190.61/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "52.5.190.61/32"
     destination_address_prefix = "*"
   }
 
@@ -193,9 +193,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "54.74.133.23/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "54.74.133.23/32"
     destination_address_prefix = "*"
   }
 
@@ -205,9 +205,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "18.158.122.46/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "18.158.122.46/32"
     destination_address_prefix = "*"
   }
 
@@ -217,9 +217,9 @@ resource "azurerm_network_security_group" "public" {
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
-    source_port_range          = "18.140.33.99/32"
+    source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "18.140.33.99/32"
     destination_address_prefix = "*"
   }
 
