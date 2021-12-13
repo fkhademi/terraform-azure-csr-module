@@ -281,14 +281,14 @@ resource "azurerm_virtual_machine" "instance" {
 
   storage_image_reference {
     publisher = "cisco"
-    offer     = "cisco-sdwan-csr-1000v"
-    sku       = "17_3_3-byol"
+    offer     = "cisco_cloud_cedge"
+    sku       = "cisco_cloud_csr_1000_17_3_3"
     version   = "latest"
   }
 
   plan {
-    name      = "17_3_3-byol"
-    product   = "cisco-sdwan-csr-1000v"
+    name      = "cisco_cloud_csr_1000_17_3_3"
+    product   = "cisco_cloud_cedge"
     publisher = "cisco"
   }
 
