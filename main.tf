@@ -23,9 +23,10 @@ resource "azurerm_network_interface" "public" {
 }
 
 resource "azurerm_network_interface" "priv" {
-  name                = "${var.name}-priv-nic"
-  location            = var.region
-  resource_group_name = var.rg
+  name                 = "${var.name}-priv-nic"
+  location             = var.region
+  resource_group_name  = var.rg
+  enable_ip_forwarding = true
 
   ip_configuration {
     name                          = "${var.name}-priv-nic"
