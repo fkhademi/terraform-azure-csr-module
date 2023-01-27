@@ -15,7 +15,7 @@ resource "azurerm_network_interface" "public" {
   ip_configuration {
     name                          = "${var.name}-public-nic"
     subnet_id                     = var.subnet
-    private_ip_address_allocation = "dynamic"
+    private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.public.id
   }
 
@@ -31,7 +31,7 @@ resource "azurerm_network_interface" "priv" {
   ip_configuration {
     name                          = "${var.name}-priv-nic"
     subnet_id                     = var.priv_subnet
-    private_ip_address_allocation = "dynamic"
+    private_ip_address_allocation = "Dynamic"
   }
   
     depends_on = [azurerm_network_security_group.priv]
