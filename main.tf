@@ -47,7 +47,7 @@ resource "azurerm_network_security_group" "public" {
     priority                   = 1000
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "ICMP"
+    protocol                   = "Icmp"
     source_port_range          = "*"
     destination_port_range     = "*"
     source_address_prefix      = "*"
@@ -59,7 +59,7 @@ resource "azurerm_network_security_group" "public" {
     priority                   = 1001
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "UDP"
+    protocol                   = "Udp"
     source_port_range          = "*"
     destination_port_range     = "12346-13156"
     source_address_prefix      = "*"
@@ -71,10 +71,10 @@ resource "azurerm_network_security_group" "public" {
     priority                   = 1002
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "TCP"
+    protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = "185.112.52.0/22"
+    source_address_prefix      = "0.0.0.0/0"
     destination_address_prefix = "*"
   }
 
@@ -83,7 +83,7 @@ resource "azurerm_network_security_group" "public" {
     priority                   = 1003
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "TCP"
+    protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
     source_address_prefix      = "194.30.181.0/24"
